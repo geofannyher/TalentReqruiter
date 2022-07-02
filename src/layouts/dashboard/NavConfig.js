@@ -8,25 +8,25 @@ const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 const navConfig = [
 
   {
-    title: 'Pelamar Pekerja',
-    path: '/dashboard/user',
-    icon: getIcon('eva:people-fill'),
-  },
-  {
     title: 'Deskripsi Pekerjaan',
     path: '/dashboard/products',
     icon: getIcon('eva:shopping-bag-fill'),
   },
   {
-    title: 'Tanggung Jawab',
-    path: '/dashboard/blog',
-    icon: getIcon('eva:file-text-fill'),
+    title: 'Pelamar Pekerja',
+    path: '/dashboard/user',
+    icon: getIcon('eva:people-fill'),
   },
-  {
-    title: 'Keahlian',
-    path: '/login',
-    icon: getIcon('eva:lock-fill'),
-  },
+  // {
+  //   title: 'Tanggung Jawab',
+  //   path: '/dashboard/blog',
+  //   icon: getIcon('eva:file-text-fill'),
+  // },
+  // {
+  //   title: 'Keahlian',
+  //   path: '/login',
+  //   icon: getIcon('eva:lock-fill'),
+  // },
   // {
   //   title: 'register',
   //   path: '/register',
