@@ -10,6 +10,10 @@ import NotFound from './pages/Page404';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import DashboardApp from './pages/DashboardApp';
+<<<<<<< HEAD
+=======
+import Detail from './pages/Detail';
+>>>>>>> parent of 26b26ed... Update
 
 // ----------------------------------------------------------------------
 
@@ -23,6 +27,7 @@ export default function Router() {
         { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
+        { path: 'Detail', element: <Detail /> },
       ],
     },
     {
