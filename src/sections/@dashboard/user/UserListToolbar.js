@@ -50,6 +50,8 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
           {numSelected} selected
         </Typography>
       ) : (
+
+        // search input field ------------------------------------------------
         <SearchStyle
           value={filterName}
           onChange={onFilterName}
@@ -61,6 +63,8 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
           }
         />
       )}
+
+      {/* Delete selected users------------------------------------------------ */}
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
@@ -68,6 +72,8 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
           </IconButton>
         </Tooltip>
       ) : (
+
+        // Select to filter by role
         <Box sx={{display: "flex", flexDirection:"row" , alignItem: "center"} }>
           <FormControl sx={{ m: 1, minWidth: 200 }}>
         <InputLabel id="demo-simple-select-helper-label">Pilih Role</InputLabel>
@@ -78,6 +84,7 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
           value={1}
           onChange={() => {}}
         >
+          {/* item option role ------------------------------------------------  */}
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
@@ -85,6 +92,8 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
+
+        {/* Filter list table------------------------------------------------ */}
       </FormControl>
         <Tooltip title="Filter list">
           <IconButton>

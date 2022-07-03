@@ -5,7 +5,6 @@ import { Container, Stack, Typography } from '@mui/material';
 import Page from '../components/Page';
 import { DescriptionCard } from '../sections/@dashboard/products';
 // mock
-import PRODUCTS from '../_mock/products';
 
 // ----------------------------------------------------------------------
 
@@ -21,7 +20,7 @@ export default function EcommerceShop() {
   };
 
   return (
-    <Page title="Dashboard: Products">
+    <Page title="Deskripsi Pekerjaan">
       <Container>
         <Typography variant="h4" sx={{ mb: 5 }}>
           Deskripsi Pekerjaan dan Kriteria Pelamar
