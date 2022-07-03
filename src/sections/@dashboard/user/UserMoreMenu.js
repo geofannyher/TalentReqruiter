@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // material
-import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Menu, MenuItem, ListItemIcon, ListItemText } from '@mui/material';
 // component
 import Iconify from '../../../components/Iconify';
 
@@ -12,10 +12,10 @@ export default function UserMoreMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
-      <IconButton ref={ref} onClick={() => setIsOpen(true)}>
+    <>  
+      {/* <IconButton ref={ref} onClick={() => setIsOpen(true)}>
         <Iconify icon="eva:more-vertical-fill" width={20} height={20} />
-      </IconButton>
+      </IconButton> */}
 
       <Menu
         open={isOpen}
@@ -33,7 +33,6 @@ export default function UserMoreMenu() {
           </ListItemIcon>
           <ListItemText primary="Delete" primaryTypographyProps={{ variant: 'body2' }} />
         </MenuItem>
-
         <MenuItem component={RouterLink} to="/dashboard/detail" sx={{ color: 'text.secondary' }}>
           <ListItemIcon>
             <Iconify icon="eva:edit-fill" width={24} height={24} />

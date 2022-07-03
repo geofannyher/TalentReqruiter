@@ -35,6 +35,8 @@ const [expanded, setExpanded] = React.useState(false);
   return (
     <Container>
       <Stack sx={{ mb: 5 }}>
+
+        {/* // image card ------------------------------------------------ */}
         <Card sx={{ maxWidth: 1820 }}>
             <CardMedia
             component="img"
@@ -42,19 +44,25 @@ const [expanded, setExpanded] = React.useState(false);
             height="340"
             src="/static/illustrations/Ui.jpeg"/>
             <CardContent>
+
+                {/* // title card ------------------------------------------------ */}
                 <Typography gutterBottom variant="h5" component="div">
                     User Interface / User Experience Design
                 </Typography>
+                {/* // DescriptionCard ------------------------------------------------ */}
                 <Typography variant="body1" color="text.secondary" component="div" sx={{ mb: 5 }}>
                          UI Designer merupakan sebutan untuk orang yang mendesain interface untuk perangkat lunak komputer, ponsel pintar, dan lainnya.UX Designer adalah jenis pekerjaan yang berhubungan dengan bagaimana meningkatkan kepuasan pengguna aplikasi maupun pengunjung situs yang dilihat dari nilai guna, manfaat, juga kesenangan yang didapatkan si pengguna dari suatu aplikasi atau situs.
                 </Typography>
             </CardContent>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
+
+                   {/* title card ------------------------------------------------ */}
                 <Typography gutterBottom variant="h5" component="div">
                     Deskripsi Pekerja
                 </Typography>
                 <Typography variant="body2" color="text.secondary" component="div" sx={{ mb: 5 }}>
+                    {/* DescriptionCard ------------------------------------------------ */}
                     <Typography gutterBottom variant='body1' component="div">
                         Berikut Merupakan Deskripsi Pekerjaan UI/UX :
                     </Typography>
@@ -79,11 +87,14 @@ const [expanded, setExpanded] = React.useState(false);
                         </ListItemText>
                     </ListItem>
                 </Typography>
+
+                {/* // title card ------------------------------------------------ */}
                 <Typography gutterBottom variant="h5" component="div">
                     Requirement Job
                 </Typography>
                 <Typography variant='body1' color="text.secondary" component="div" sx={{ mb: 5}}>
                 <ListItem>
+                    {/* DescriptionCard ------------------------------------------------ */}
                         <ListItemText>
                             <ul>
                                 <li>

@@ -74,6 +74,7 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
+// table configuration
 export default function User() {
   const [page, setPage] = useState(0);
 
@@ -87,7 +88,7 @@ export default function User() {
 
   const [filterName, setFilterName] = useState('');
 
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -184,12 +185,19 @@ export default function User() {
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
                             <Avatar alt={name} src={avatarUrl} />
+
+                            {/* // field name ------------------------------------------------ */}
                             <Typography variant="subtitle2" noWrap>
                               {name}
                             </Typography>
                           </Stack>
                         </TableCell>
+                        {/* show field */}
+
+                        {/* field score ------------------------------------------------ */}
                         <TableCell align="left">{company}</TableCell>
+
+                        {/* field role ------------------------------------------------ */}
                         <TableCell align="left">{role}</TableCell>
                         {/* <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell> */}
                         {/* <TableCell align="left">
@@ -197,8 +205,9 @@ export default function User() {
                             {sentenceCase(status)}
                           </Label>
                         </TableCell> */}
+                        <TableCell>
 
-                        <TableCell align="right">
+                          {/* button detail pelamar------------------------------------------------ */}
                         <Button variant="contained" onClick={() => navigate("/dashboard/detail")} >Detil</Button>
                           <UserMoreMenu />
                         </TableCell>
