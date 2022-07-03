@@ -5,24 +5,11 @@ import {
   Toolbar,
   Tooltip,
   IconButton,
+  Checkbox,
   Typography,
   OutlinedInput,
   InputAdornment,
-<<<<<<< HEAD
-<<<<<<< HEAD
-  Chip,
-  Container,
   FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText,
-=======
-  FormControl,
->>>>>>> 87cfcad64181685816857ea712d6ab93aef35d5a
-=======
-  FormControl,
->>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
   Box,
 } from '@mui/material';
 // component
@@ -52,13 +39,7 @@ const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-
-<<<<<<< HEAD
-export default function UserListToolbar({ numSelected, filterName, onFilterName, roles, roleSelected }) {
-=======
-
 export default function UserListToolbar({ numSelected, roles, roleSelected }) {
->>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
   return (
     <RootStyle
       sx={{
@@ -75,12 +56,6 @@ export default function UserListToolbar({ numSelected, roles, roleSelected }) {
       ) : (
         // search input field ------------------------------------------------
         <SearchStyle
-<<<<<<< HEAD
-          // value={filterName}
-          // onChange={onFilterName}
-=======
-       
->>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
           placeholder="Search user..."
           startAdornment={
             <InputAdornment position="start">
@@ -104,8 +79,6 @@ export default function UserListToolbar({ numSelected, roles, roleSelected }) {
             {/* <InputLabel id="demo-simple-select-helper-label">Pilih Role</InputLabel> */}
             <select
               labelId="demo-simple-select-helper-label"
-<<<<<<< HEAD
-=======
               style={{
                 border: '1px solid #ccc',
                 fontSize: '14px',
@@ -121,7 +94,6 @@ export default function UserListToolbar({ numSelected, roles, roleSelected }) {
                 WebkitAppearance: 'none',
                 boxShadow: '0 1px 3px -2px #9098A9',
               }}
->>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
               id="demo-simple-select-helper"
               label="Pilih Role"
               defaultValue={roles.length > 0 ? roles[0].id_job : ''}

@@ -1,8 +1,5 @@
 import { filter } from 'lodash';
-<<<<<<< HEAD
 import { sentenceCase } from 'change-case';
-=======
->>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
 // axios
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -22,6 +19,7 @@ import {
   TableContainer,
   TablePagination,
   CircularProgress,
+  Checkbox,
 } from '@mui/material';
 // components
 import Page from '../components/Page';
@@ -32,14 +30,8 @@ import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
 // mock
 // import USERLIST from '../_mock/user';
-<<<<<<< HEAD
 // base url
 import { baseUrl } from '../constant';
-=======
-// base ur
-import { baseUrl } from '../constant';
-
->>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -234,17 +226,10 @@ export default function User() {
                         aria-checked={isItemSelected}
                       >
                         <TableCell padding="checkbox">
-<<<<<<< HEAD
                           <Checkbox
                             checked={isItemSelected}
                             onChange={(event) => handleClick(event, row.applicant.name)}
                           />
-=======
-                          {/* <Checkbox
-                            checked={isItemSelected}
-                            onChange={(event) => handleClick(event, row.applicant.name)}
-                          /> */}
->>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
                         </TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
@@ -263,15 +248,12 @@ export default function User() {
 
                         {/* field role ------------------------------------------------ */}
                         <TableCell align="left">{row.applicant.name}</TableCell>
-<<<<<<< HEAD
                         {/* <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell> */}
                         {/* <TableCell align="left">
                           <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
                             {sentenceCase(status)}
                           </Label>
                         </TableCell> */}
-=======
->>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
                         <TableCell>
                           {/* button detail pelamar------------------------------------------------ */}
                           <Button
@@ -279,10 +261,6 @@ export default function User() {
                             onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
                           >
                             Detail
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
                           </Button>
                           
                           <Button
@@ -290,8 +268,6 @@ export default function User() {
                             onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
                           >
                             Delete
-=======
->>>>>>> 87cfcad64181685816857ea712d6ab93aef35d5a
                           </Button>
                           {/* <Button
                            style={{
