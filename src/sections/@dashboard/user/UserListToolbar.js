@@ -8,13 +8,7 @@ import {
   Typography,
   OutlinedInput,
   InputAdornment,
-  Chip,
-  Container,
   FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText,
   Box,
 } from '@mui/material';
 // component
@@ -67,8 +61,8 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName,
       ) : (
         // search input field ------------------------------------------------
         <SearchStyle
-          value={filterName}
-          onChange={onFilterName}
+          // value={filterName}
+          // onChange={onFilterName}
           placeholder="Search user..."
           startAdornment={
             <InputAdornment position="start">

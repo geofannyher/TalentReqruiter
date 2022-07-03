@@ -264,13 +264,19 @@ export default function User() {
                           >
                             Detail
                           </Button>
-                          
-                          <Button
+                          {/* <Button
+                           style={{
+                            marginLeft: '15px',
+                            backgroundColor: "red",
+                            color: "white"
+                          }}  
+                            marginRight={10}
                             variant="contained"
                             onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
                           >
                             Delete
-                          </Button>
+                          </Button> */}
+                          
                           <UserMoreMenu />
                         </TableCell>
                       </TableRow>
