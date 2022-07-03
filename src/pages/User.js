@@ -1,5 +1,4 @@
 import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
 // axios
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -19,7 +18,6 @@ import {
   TableContainer,
   TablePagination,
   CircularProgress,
-  Checkbox,
 } from '@mui/material';
 // components
 import Page from '../components/Page';
@@ -30,8 +28,9 @@ import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
 // mock
 // import USERLIST from '../_mock/user';
-// base url
+// base ur
 import { baseUrl } from '../constant';
+
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -226,10 +225,10 @@ export default function User() {
                         aria-checked={isItemSelected}
                       >
                         <TableCell padding="checkbox">
-                          <Checkbox
+                          {/* <Checkbox
                             checked={isItemSelected}
                             onChange={(event) => handleClick(event, row.applicant.name)}
-                          />
+                          /> */}
                         </TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
@@ -248,12 +247,6 @@ export default function User() {
 
                         {/* field role ------------------------------------------------ */}
                         <TableCell align="left">{row.applicant.name}</TableCell>
-                        {/* <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell> */}
-                        {/* <TableCell align="left">
-                          <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
-                            {sentenceCase(status)}
-                          </Label>
-                        </TableCell> */}
                         <TableCell>
                           {/* button detail pelamar------------------------------------------------ */}
                           <Button
@@ -262,26 +255,6 @@ export default function User() {
                           >
                             Detail
                           </Button>
-                          
-                          <Button
-                            variant="contained"
-                            onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
-                          >
-                            Delete
-                          </Button>
-                          {/* <Button
-                           style={{
-                            marginLeft: '15px',
-                            backgroundColor: "red",
-                            color: "white"
-                          }}  
-                            marginRight={10}
-                            variant="contained"
-                            onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
-                          >
-                            Delete
-                          </Button> */}
-                          
                           <UserMoreMenu />
                         </TableCell>
                       </TableRow>
