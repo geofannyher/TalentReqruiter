@@ -32,28 +32,32 @@ export default function Detail() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Weekly Sales" total={714000} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary title="New Users" total={1352831} color="info" icon={'ant-design:apple-filled'} />
           </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
+          
+          <Grid item xs={19} sm={6} md={6}>
             <AppWidgetSummary title="Item Orders" total={1723315} color="warning" icon={'ant-design:windows-filled'} />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
+          <Grid item xs={12} md={6} lg={3}>
             <AppWebsiteVisits
-              title="Profile"
-              
-              
+              title="Analisis Sentimen"
+              subheader="(+43%) than last year"
+              chartLabels={[
+                '01/01/2022',
+                '02/01/2022',
+              ]}
               chartData={[
-                
+                {
+                  name: 'Team A',
+                  type: 'column',
+                  fill: 'solid',
+                  data: [23, 11],
+                },
               ]}
             />
           </Grid>
@@ -62,10 +66,8 @@ export default function Detail() {
             <AppCurrentVisits
               title="Sentiment"
               chartData={[
-                { label: 'Positif', value: 7344 },
-                // { label: 'Asia', value: 5435 },
-                // { label: 'Europe', value: 1443 },
-                { label: 'Negatif', value: 4443 },
+                { label: 'Intolerant Score', value: 12 },
+                { label: 'Tolerant Score', value: 23 }, 
               ]}
               chartColors={[
                 theme.palette.primary.main,
@@ -76,16 +78,17 @@ export default function Detail() {
             />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={8}>
+          <Grid item xs={12} md={6} lg={5}>
             <AppConversionRates
-              title="Kepribadian"
-              subheader="Data diambil berdasarkan kepribadian user"
+              title="Conversion Rates"
+              // subheader="(+43%) than last year"
               chartData={[
-                { label: 'Opennes', value: 400 },
-                { label: 'Conscientiousness', value: 430 },
-                { label: 'Extraversion', value: 448 },
-                { label: 'Agreeableness', value: 470 },
-                { label: 'Neuroticism', value: 540 },
+                { label: 'Openess', value: 20 },
+                { label: 'Conscientiousness', value: 40 },
+                { label: 'Extraversion', value: 60  },
+                { label: 'Agreeableness', value: 80 },
+                { label: 'Neuroticism', value: 10 },
+                
               ]}
             />
           </Grid>
@@ -102,7 +105,6 @@ export default function Detail() {
               chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
             />
           </Grid>
-
           <Grid item xs={12} md={6} lg={8}>
             <AppNewsUpdate
               title="News Update"
@@ -133,7 +135,7 @@ export default function Detail() {
               }))}
             />
           </Grid>
-
+          
           <Grid item xs={12} md={6} lg={4}>
             <AppTrafficBySite
               title="Identitas Diri"
@@ -158,19 +160,6 @@ export default function Detail() {
                   value: 443232,
                   icon: <Iconify icon={'eva:twitter-fill'} color="#1C9CEA" width={32} height={32} />,
                 },
-              ]}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppTasks
-              title="Tasks"
-              list={[
-                { id: '1', label: 'Create FireStone Logo' },
-                { id: '2', label: 'Add SCSS and JS files if required' },
-                { id: '3', label: 'Stakeholder Meeting' },
-                { id: '4', label: 'Scoping & Estimations' },
-                { id: '5', label: 'Sprint Showcase' },
               ]}
             />
           </Grid>

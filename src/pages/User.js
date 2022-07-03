@@ -1,7 +1,7 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import {
   Card,
@@ -76,6 +76,8 @@ function applySortFilter(array, comparator, query) {
 
 export default function User() {
   const [page, setPage] = useState(0);
+
+  const navigate = useNavigate();
 
   const [order, setOrder] = useState('asc');
 
@@ -197,6 +199,7 @@ export default function User() {
                         </TableCell> */}
 
                         <TableCell align="right">
+                        <Button variant="contained" onClick={() => navigate("/dashboard/detail")} >Detil</Button>
                           <UserMoreMenu />
                         </TableCell>
                       </TableRow>
