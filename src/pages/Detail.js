@@ -32,6 +32,7 @@ export default function Detail() {
         </Typography>
 
         <Grid container spacing={3}>
+
           <Grid item xs={8} sm={6} md={3}>
             <AppWidgetWinter/>
           </Grid>
@@ -40,6 +41,7 @@ export default function Detail() {
             <AppWidgetSummary title="Score Total" total={90} color="info" icon={'ant-design:user-filled'} />
           </Grid>
           
+
           <Grid item xs={8} md={6} lg={4}>
             <AppTrafficBySite
               title="Identitas Diri"
@@ -75,18 +77,21 @@ export default function Detail() {
               chartLabels={[
                 'Negatif',
                 'Positif',
+
               ]}
               chartData={[
                 {
                   name: 'Team A',
                   type: 'column',
                   fill: 'solid',
+
                   data: [123, 111],
                 },
               ]}
               chartColors={[
                 theme.palette.primary.main,
                 theme.palette.chart.red[0],
+
               ]}
             />
           </Grid>
@@ -134,7 +139,9 @@ export default function Detail() {
               chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
             />
           </Grid>
+
           <Grid item xs={12} md={6} lg={5}>
+
             <AppNewsUpdate
               title="News Update"
               list={[...Array(5)].map((_, index) => ({
@@ -146,6 +153,7 @@ export default function Detail() {
               }))}
             />
           </Grid>
+
 
           <Grid item xs={12} md={6} lg={5}>
           <AppConversionRates
@@ -160,6 +168,7 @@ export default function Detail() {
                 { label: 'Cooking', value: 10 },
                 { label: 'Beauty', value: 10 },
                 { label: 'Social', value: 10 },
+
               ]}
             />
           </Grid>

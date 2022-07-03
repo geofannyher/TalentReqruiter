@@ -1,7 +1,7 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import {
   Card,
@@ -17,6 +17,10 @@ import {
   Typography,
   TableContainer,
   TablePagination,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from '@mui/material';
 // components
 import Page from '../components/Page';
@@ -38,7 +42,7 @@ const TABLE_HEAD = [
   // { id: 'status', label: 'Status', alignRight: false },
   { id: '' },
 ];
-
+// ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 
 function descendingComparator(a, b, orderBy) {
@@ -72,6 +76,8 @@ function applySortFilter(array, comparator, query) {
 
 export default function User() {
   const [page, setPage] = useState(0);
+
+  const navigate = useNavigate();
 
   const [order, setOrder] = useState('asc');
 
@@ -137,16 +143,14 @@ export default function User() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Data Pelamar Pekerja
           </Typography>
-          <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
+          {/* <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
             New User
-          </Button>
+          </Button> */}
         </Stack>
-
         <Card>
           <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
-
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
@@ -160,6 +164,7 @@ export default function User() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
+                  
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                     const { id, name, role, status, company, avatarUrl } = row;
                     const isItemSelected = selected.indexOf(name) !== -1;
@@ -194,6 +199,7 @@ export default function User() {
                         </TableCell> */}
 
                         <TableCell align="right">
+                        <Button variant="contained" onClick={() => navigate("/dashboard/detail")} >Detil</Button>
                           <UserMoreMenu />
                         </TableCell>
                       </TableRow>
