@@ -70,12 +70,74 @@ export default function Detail() {
       },
     ],
   });
+  // Data Kepribadian
+  const [dataKepribadian, setKepribadian] = React.useState({
+    open: 0,
+    con: 0,
+    extra: 0,
+    agree: 0,
+    neuro: 0,
+  });
+  // Data Ketertarikan
+  const [dataKetertarikan, setKetertarikan] = React.useState({
+    traveling: 0,
+    musik: 0,
+    art: 0,
+    sport: 0,
+    game: 0,
+    cooking: 0,
+    beauty: 0,
+    social: 0,
+  });
+  // Data Intolerant
+  const [dataIntolerant, setIntolerant] = React.useState({
+    intolerant: 0,
+  });
+  // Data Keahlian
+  const [dataKeahlian, setKeahlian] = React.useState({
+    findKeahlian: [
+      {
+        score: 0,
+        job: {
+          job_name: '',
+        },
+      },
+      {
+        score: 0,
+        job: {
+          job_name: '',
+        },
+      },
+      {
+        score: 0,
+        job: {
+          job_name: '',
+        },
+      },
+      {
+        score: 0,
+        job: {
+          job_name: '',
+        },
+      },
+      {
+        score: 0,
+        job: {
+          job_name: '',
+        },
+      },
+    ],
+  });
 
   // Axios
   React.useEffect(() => {
     Score();
     Experience();
     Sentimen();
+    Kepribadian();
+    Ketertarikan();
+    Intolerant();
+    Keahlian();
   }, {});
 
   // Get Score Use Axios
@@ -128,6 +190,73 @@ export default function Detail() {
       });
   };
 
+  // Get Kepribadian Use Axios
+  const Kepribadian = async () => {
+    await axios
+      .post(`${baseUrl}kepribadian`, { idApplicant: applicantId })
+      .then((res) => {
+        if (res.status === 200) {
+          setKepribadian(res.data.findKetertarikan);
+          // console.log(res.data.findKetertarikan);
+        } else {
+          console.log(res.data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // Get Ketertarikan Use Axios
+  const Ketertarikan = async () => {
+    await axios
+      .post(`${baseUrl}ketertarikan`, { idApplicant: applicantId })
+      .then((res) => {
+        if (res.status === 200) {
+          setKetertarikan(res.data.findKetertarikan);
+          // console.log(res.data);
+        } else {
+          console.log(res.data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // Get Intolerant Use Axios
+  const Intolerant = async () => {
+    await axios
+      .post(`${baseUrl}intolerant`, { idApplicant: applicantId })
+      .then((res) => {
+        if (res.status === 200) {
+          setIntolerant(res.data.findTolerant);
+          // console.log(res.data.findTolerant);
+        } else {
+          console.log(res.data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // Get Keahlian Use Axios
+  const Keahlian = async () => {
+    await axios
+      .post(`${baseUrl}keahlian`, { idApplicant: applicantId })
+      .then((res) => {
+        if (res.status === 200) {
+          setKeahlian(res.data);
+          console.log(res.data);
+        } else {
+          console.log(res.data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <Page title="Dashboard">
       {/* {dataScore.splice((val, index) => { */}
@@ -147,7 +276,6 @@ export default function Detail() {
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary title="Score" total={dataScore.score} color="info" icon={'ant-design:user-filled'} />
           </Grid>
-
           <Grid item xs={8} md={6} lg={4}>
             <AppTrafficBySite
               title="Identitas Diri"
@@ -195,8 +323,7 @@ export default function Detail() {
                   name: 'Team A',
                   type: 'column',
                   fill: 'solid',
-
-                  data: [5, 1],
+                  data: [dataSentimen.sentimen[0].negative, dataSentimen.sentimen[0].positive],
                 },
               ]}
               chartColors={[theme.palette.primary.main, theme.palette.chart.red[0]]}
@@ -204,10 +331,11 @@ export default function Detail() {
           </Grid>
           <Grid item xs={12} md={6} lg={5}>
             <AppCurrentVisits
-              title="Sentiment"
+              title="Intolerant"
               chartData={[
-                { label: 'Intolerant Score', value: 1 },
-                { label: 'Tolerant Score', value: 2 },
+                { label: 'Intolerant Score', value: dataIntolerant.intolerant },
+
+                { label: 'Tolerant Score', value: 100 - dataIntolerant.intolerant },
               ]}
               chartColors={[
                 theme.palette.primary.main,
@@ -219,27 +347,40 @@ export default function Detail() {
           </Grid>
           <Grid item xs={12} md={6} lg={5}>
             <AppConversionRates
-              title="Conversion Rates"
+              title="Kepribadian"
               // subheader="(+43%) than last year"
               chartData={[
-                { label: 'Openess', value: 20 },
-                { label: 'Conscientiousness', value: 40 },
-                { label: 'Extraversion', value: 60 },
-                { label: 'Agreeableness', value: 80 },
-                { label: 'Neuroticism', value: 10 },
+                { label: 'Open', value: dataKepribadian.open },
+                { label: 'Con', value: dataKepribadian.con },
+                { label: 'Extra', value: dataKepribadian.extra },
+                { label: 'Aggre', value: dataKepribadian.agree },
+                { label: 'Neuro', value: dataKepribadian.neuro },
               ]}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={5}>
             <AppCurrentSubject
               title="Keahlian"
-              chartLabels={['Agile', 'UI/UX Designer', 'Web Development', 'Mobile Dev', 'Software Testing', 'Scrum']}
-              chartData={[
-                { name: 'Term Frequency', data: [80, 50, 30, 40, 100, 20] },
-                { name: 'Index Freqency', data: [20, 30, 40, 80, 20, 80] },
-                { name: 'TF/IDF', data: [44, 76, 78, 13, 43, 10] },
+              chartLabels={[
+                'UI/UX Designer',
+                'Front-End Developer',
+                'Back-End Developer',
+                'Mobile Developer',
+                'Database Administrator',
               ]}
-              chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
+              chartData={[
+                {
+                  name: 'Keahlian',
+                  data: [
+                    dataKeahlian.findKeahlian[0].score,
+                    dataKeahlian.findKeahlian[1].score,
+                    dataKeahlian.findKeahlian[2].score,
+                    dataKeahlian.findKeahlian[3].score,
+                    dataKeahlian.findKeahlian[4].score,
+                  ],
+                },
+              ]}
+              chartColors={[...Array(dataKeahlian)].map(() => theme.palette.text.secondary)}
             />
           </Grid>
 
@@ -254,14 +395,14 @@ export default function Detail() {
               title="Ketertarikan"
               // subheader="(+43%) than last year"
               chartData={[
-                { label: 'Traveling', value: 20 },
-                { label: 'Musik', value: 40 },
-                { label: 'Art', value: 60 },
-                { label: 'Sport', value: 80 },
-                { label: 'Game', value: 10 },
-                { label: 'Cooking', value: 10 },
-                { label: 'Beauty', value: 10 },
-                { label: 'Social', value: 10 },
+                { label: 'Traveling', value: dataKetertarikan.traveling },
+                { label: 'Musik', value: dataKetertarikan.musik },
+                { label: 'Art', value: dataKetertarikan.art },
+                { label: 'Sport', value: dataKetertarikan.sport },
+                { label: 'Game', value: dataKetertarikan.game },
+                { label: 'Cooking', value: dataKetertarikan.cooking },
+                { label: 'Beauty', value: dataKetertarikan.beauty },
+                { label: 'Social', value: dataKetertarikan.social },
               ]}
             />
           </Grid>
