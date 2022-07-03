@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+
 // material
 import { styled } from '@mui/material/styles';
 import {
@@ -8,6 +8,7 @@ import {
   Typography,
   OutlinedInput,
   InputAdornment,
+<<<<<<< HEAD
 <<<<<<< HEAD
   Chip,
   Container,
@@ -19,6 +20,9 @@ import {
 =======
   FormControl,
 >>>>>>> 87cfcad64181685816857ea712d6ab93aef35d5a
+=======
+  FormControl,
+>>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
   Box,
 } from '@mui/material';
 // component
@@ -48,13 +52,13 @@ const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-UserListToolbar.propTypes = {
-  numSelected: PropTypes.number,
-  filterName: PropTypes.string,
-  onFilterName: PropTypes.func,
-};
 
+<<<<<<< HEAD
 export default function UserListToolbar({ numSelected, filterName, onFilterName, roles, roleSelected }) {
+=======
+
+export default function UserListToolbar({ numSelected, roles, roleSelected }) {
+>>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
   return (
     <RootStyle
       sx={{
@@ -71,8 +75,12 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName,
       ) : (
         // search input field ------------------------------------------------
         <SearchStyle
+<<<<<<< HEAD
           // value={filterName}
           // onChange={onFilterName}
+=======
+       
+>>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
           placeholder="Search user..."
           startAdornment={
             <InputAdornment position="start">
@@ -96,6 +104,24 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName,
             {/* <InputLabel id="demo-simple-select-helper-label">Pilih Role</InputLabel> */}
             <select
               labelId="demo-simple-select-helper-label"
+<<<<<<< HEAD
+=======
+              style={{
+                border: '1px solid #ccc',
+                fontSize: '14px',
+                color: '#333',
+                backgroundColor: '#fff',
+                cursor: 'pointer',
+                outline: 'none',
+                 appearance: 'none',
+                MozAppearance: 'none',
+                borderRadius: '4px',
+                width: '100%',
+                padding: '10px',
+                WebkitAppearance: 'none',
+                boxShadow: '0 1px 3px -2px #9098A9',
+              }}
+>>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
               id="demo-simple-select-helper"
               label="Pilih Role"
               defaultValue={roles.length > 0 ? roles[0].id_job : ''}

@@ -1,5 +1,8 @@
 import { filter } from 'lodash';
+<<<<<<< HEAD
 import { sentenceCase } from 'change-case';
+=======
+>>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
 // axios
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -11,7 +14,6 @@ import {
   Stack,
   Avatar,
   Button,
-  Checkbox,
   TableRow,
   TableBody,
   TableCell,
@@ -19,10 +21,7 @@ import {
   Typography,
   TableContainer,
   TablePagination,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
+  CircularProgress,
 } from '@mui/material';
 // components
 import Page from '../components/Page';
@@ -33,14 +32,21 @@ import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
 // mock
 // import USERLIST from '../_mock/user';
+<<<<<<< HEAD
 // base url
 import { baseUrl } from '../constant';
+=======
+// base ur
+import { baseUrl } from '../constant';
+
+>>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Pelamar', alignRight: false },
   { id: 'score', label: 'Score', alignRight: false },
   { id: 'role', label: 'Role', alignRight: false },
+  { id: 'action', label: 'Action', alignRight: false },
   // { id: 'isVerified', label: 'Verified', alignRight: false },
   // { id: 'status', label: 'Status', alignRight: false },
   { id: '' },
@@ -228,10 +234,17 @@ export default function User() {
                         aria-checked={isItemSelected}
                       >
                         <TableCell padding="checkbox">
+<<<<<<< HEAD
                           <Checkbox
                             checked={isItemSelected}
                             onChange={(event) => handleClick(event, row.applicant.name)}
                           />
+=======
+                          {/* <Checkbox
+                            checked={isItemSelected}
+                            onChange={(event) => handleClick(event, row.applicant.name)}
+                          /> */}
+>>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
                         </TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
@@ -250,12 +263,15 @@ export default function User() {
 
                         {/* field role ------------------------------------------------ */}
                         <TableCell align="left">{row.applicant.name}</TableCell>
+<<<<<<< HEAD
                         {/* <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell> */}
                         {/* <TableCell align="left">
                           <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
                             {sentenceCase(status)}
                           </Label>
                         </TableCell> */}
+=======
+>>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
                         <TableCell>
                           {/* button detail pelamar------------------------------------------------ */}
                           <Button
@@ -264,6 +280,9 @@ export default function User() {
                           >
                             Detail
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b74a6ad91c017b8ff1a81939ed7ece1052abbed5
                           </Button>
                           
                           <Button
@@ -299,11 +318,12 @@ export default function User() {
                   )}
                 </TableBody>
 
-                {isUserNotFound && (
+                {isUserNotFound &&   (
                   <TableBody>
                     <TableRow>
                       <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        <SearchNotFound searchQuery={filterName} />
+                        {/* <SearchNotFound searchQuery={filterName} /> */}
+                        <CircularProgress />
                       </TableCell>
                     </TableRow>
                   </TableBody>
