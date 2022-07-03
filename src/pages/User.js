@@ -1,5 +1,4 @@
 import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
 // axios
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -11,7 +10,6 @@ import {
   Stack,
   Avatar,
   Button,
-  Checkbox,
   TableRow,
   TableBody,
   TableCell,
@@ -19,10 +17,7 @@ import {
   Typography,
   TableContainer,
   TablePagination,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
+  CircularProgress,
 } from '@mui/material';
 // components
 import Page from '../components/Page';
@@ -33,14 +28,16 @@ import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
 // mock
 // import USERLIST from '../_mock/user';
-// base url
+// base ur
 import { baseUrl } from '../constant';
+
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Pelamar', alignRight: false },
   { id: 'score', label: 'Score', alignRight: false },
   { id: 'role', label: 'Role', alignRight: false },
+  { id: 'action', label: 'Action', alignRight: false },
   // { id: 'isVerified', label: 'Verified', alignRight: false },
   // { id: 'status', label: 'Status', alignRight: false },
   { id: '' },
@@ -228,10 +225,10 @@ export default function User() {
                         aria-checked={isItemSelected}
                       >
                         <TableCell padding="checkbox">
-                          <Checkbox
+                          {/* <Checkbox
                             checked={isItemSelected}
                             onChange={(event) => handleClick(event, row.applicant.name)}
-                          />
+                          /> */}
                         </TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
@@ -250,12 +247,6 @@ export default function User() {
 
                         {/* field role ------------------------------------------------ */}
                         <TableCell align="left">{row.applicant.name}</TableCell>
-                        {/* <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell> */}
-                        {/* <TableCell align="left">
-                          <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
-                            {sentenceCase(status)}
-                          </Label>
-                        </TableCell> */}
                         <TableCell>
                           {/* button detail pelamar------------------------------------------------ */}
                           <Button
@@ -264,19 +255,6 @@ export default function User() {
                           >
                             Detail
                           </Button>
-                          {/* <Button
-                           style={{
-                            marginLeft: '15px',
-                            backgroundColor: "red",
-                            color: "white"
-                          }}  
-                            marginRight={10}
-                            variant="contained"
-                            onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
-                          >
-                            Delete
-                          </Button> */}
-                          
                           <UserMoreMenu />
                         </TableCell>
                       </TableRow>
@@ -289,11 +267,12 @@ export default function User() {
                   )}
                 </TableBody>
 
-                {isUserNotFound && (
+                {isUserNotFound &&   (
                   <TableBody>
                     <TableRow>
                       <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        <SearchNotFound searchQuery={filterName} />
+                        {/* <SearchNotFound searchQuery={filterName} /> */}
+                        <CircularProgress />
                       </TableCell>
                     </TableRow>
                   </TableBody>

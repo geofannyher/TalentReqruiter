@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+
 // material
 import { styled } from '@mui/material/styles';
 import {
@@ -38,13 +38,9 @@ const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-UserListToolbar.propTypes = {
-  numSelected: PropTypes.number,
-  filterName: PropTypes.string,
-  onFilterName: PropTypes.func,
-};
 
-export default function UserListToolbar({ numSelected, filterName, onFilterName, roles, roleSelected }) {
+
+export default function UserListToolbar({ numSelected, roles, roleSelected }) {
   return (
     <RootStyle
       sx={{
@@ -61,8 +57,7 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName,
       ) : (
         // search input field ------------------------------------------------
         <SearchStyle
-          // value={filterName}
-          // onChange={onFilterName}
+       
           placeholder="Search user..."
           startAdornment={
             <InputAdornment position="start">
@@ -86,6 +81,21 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName,
             {/* <InputLabel id="demo-simple-select-helper-label">Pilih Role</InputLabel> */}
             <select
               labelId="demo-simple-select-helper-label"
+              style={{
+                border: '1px solid #ccc',
+                fontSize: '14px',
+                color: '#333',
+                backgroundColor: '#fff',
+                cursor: 'pointer',
+                outline: 'none',
+                 appearance: 'none',
+                MozAppearance: 'none',
+                borderRadius: '4px',
+                width: '100%',
+                padding: '10px',
+                WebkitAppearance: 'none',
+                boxShadow: '0 1px 3px -2px #9098A9',
+              }}
               id="demo-simple-select-helper"
               label="Pilih Role"
               defaultValue={roles.length > 0 ? roles[0].id_job : ''}
