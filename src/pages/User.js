@@ -1,6 +1,6 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import {
@@ -32,6 +32,7 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashbo
 // mock
 import USERLIST from '../_mock/user';
 
+import { getAllJobs } from '../database';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -77,16 +78,14 @@ function applySortFilter(array, comparator, query) {
 // table configuration
 export default function User() {
   const [page, setPage] = useState(0);
-
   const navigate = useNavigate();
-
   const [order, setOrder] = useState('asc');
-
   const [selected, setSelected] = useState([]);
-
   const [orderBy, setOrderBy] = useState('name');
-
   const [filterName, setFilterName] = useState('');
+  const [rowsPerPage, setRowsPerPage] = useState([]);
+  // Pilih role
+  const [roles, setRoles] = useState(getAllJobs);
 
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -165,7 +164,6 @@ export default function User() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                     const { id, name, role, status, company, avatarUrl } = row;
                     const isItemSelected = selected.indexOf(name) !== -1;
