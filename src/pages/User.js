@@ -83,7 +83,6 @@ export default function User() {
   const [selected, setSelected] = useState([]);
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
-  const [rowsPerPage, setRowsPerPage] = useState([]);
   // Pilih role
   const [roles, setRoles] = useState(getAllJobs);
 
@@ -204,9 +203,10 @@ export default function User() {
                           </Label>
                         </TableCell> */}
                         <TableCell>
-
                           {/* button detail pelamar------------------------------------------------ */}
-                        <Button variant="contained" onClick={() => navigate("/dashboard/detail")} >Detil</Button>
+                          <Button variant="contained" onClick={() => navigate('/dashboard/detail')}>
+                            Detil
+                          </Button>
                           <UserMoreMenu />
                         </TableCell>
                       </TableRow>
