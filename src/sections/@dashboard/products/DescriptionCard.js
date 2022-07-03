@@ -28,10 +28,17 @@ const ExpandMore = styled((props) => {
 
 export default function DescriptionCard() {
   const [expanded, setExpanded] = React.useState(false);
+<<<<<<< HEAD
   const [allJobs, setAllJobs] = React.useState([]);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+=======
+  const [allJobs, setAllJobs] = React.useState([ ]);
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  }
+>>>>>>> 87cfcad64181685816857ea712d6ab93aef35d5a
   React.useEffect(() => {
     getAllJobs();
   }, []);

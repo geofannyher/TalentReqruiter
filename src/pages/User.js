@@ -263,6 +263,7 @@ export default function User() {
                             onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
                           >
                             Detail
+<<<<<<< HEAD
                           </Button>
                           
                           <Button
@@ -270,7 +271,22 @@ export default function User() {
                             onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
                           >
                             Delete
+=======
+>>>>>>> 87cfcad64181685816857ea712d6ab93aef35d5a
                           </Button>
+                          {/* <Button
+                           style={{
+                            marginLeft: '15px',
+                            backgroundColor: "red",
+                            color: "white"
+                          }}  
+                            marginRight={10}
+                            variant="contained"
+                            onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
+                          >
+                            Delete
+                          </Button> */}
+                          
                           <UserMoreMenu />
                         </TableCell>
                       </TableRow>
