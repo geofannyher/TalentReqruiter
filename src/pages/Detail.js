@@ -27,7 +27,7 @@ export default function Detail() {
     <Page title="Dashboard">
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Hi, Welcome back
+          Detail User
         </Typography>
 
         <Grid container spacing={3}>
@@ -64,14 +64,14 @@ export default function Detail() {
 
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits
-              title="Current Visits"
+              title="Sentiment"
               chartData={[
                 { label: 'Intolerant Score', value: 12 },
                 { label: 'Tolerant Score', value: 23 }, 
               ]}
               chartColors={[
                 theme.palette.primary.main,
-                theme.palette.chart.blue[0],
+                theme.palette.chart.red[0],
                 theme.palette.chart.violet[0],
                 theme.palette.chart.yellow[0],
               ]}
@@ -93,6 +93,18 @@ export default function Detail() {
             />
           </Grid>
 
+          <Grid item xs={12} md={6} lg={4}>
+            <AppCurrentSubject
+              title="Keahlian"
+              chartLabels={['Agile', 'UI/UX Designer', 'Web Development', 'Mobile Dev', 'Software Testing', 'Scrum']}
+              chartData={[
+                { name: 'Term Frequency', data: [80, 50, 30, 40, 100, 20] },
+                { name: 'Index Freqency', data: [20, 30, 40, 80, 20, 80] },
+                { name: 'TF/IDF', data: [44, 76, 78, 13, 43, 10] },
+              ]}
+              chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
+            />
+          </Grid>
           <Grid item xs={12} md={6} lg={8}>
             <AppNewsUpdate
               title="News Update"
@@ -126,7 +138,7 @@ export default function Detail() {
           
           <Grid item xs={12} md={6} lg={4}>
             <AppTrafficBySite
-              title="Traffic by Site"
+              title="Identitas Diri"
               list={[
                 {
                   name: 'FaceBook',
