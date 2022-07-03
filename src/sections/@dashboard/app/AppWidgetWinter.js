@@ -34,41 +34,41 @@ AppWidgetSummary.propTypes = {
 };
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge': {
-      backgroundColor: '#44b700',
-      color: '#44b700',
-      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      '&::after': {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        animation: 'ripple 1.2s infinite ease-in-out',
-        border: '1px solid currentColor',
-        content: '""',
-      },
+  '& .MuiBadge-badge': {
+    backgroundColor: '#44b700',
+    color: '#44b700',
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    '&::after': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      animation: 'ripple 1.2s infinite ease-in-out',
+      border: '1px solid currentColor',
+      content: '""',
     },
-    '@keyframes ripple': {
-      '0%': {
-        transform: 'scale(.8)',
-        opacity: 1,
-      },
-      '100%': {
-        transform: 'scale(2.4)',
-        opacity: 0,
-      },
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(.8)',
+      opacity: 1,
     },
-  }));
-  
-  const SmallAvatar = styled(Avatar)(({ theme }) => ({
-    width: 22,
-    height: 22,
-    border: `2px solid ${theme.palette.background.paper}`,
-  }));
+    '100%': {
+      transform: 'scale(2.4)',
+      opacity: 0,
+    },
+  },
+}));
 
-export default function AppWidgetSummary({ title, total, icon, color = 'primary', sx, ...other }) {
+const SmallAvatar = styled(Avatar)(({ theme }) => ({
+  width: 22,
+  height: 22,
+  border: `2px solid ${theme.palette.background.paper}`,
+}));
+
+export default function AppWidgetSummary({ avatar = '', name, role, location, color = 'primary', sx }) {
   return (
     <Card
       sx={{
@@ -79,22 +79,18 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
         bgcolor: (theme) => theme.palette[color].lighter,
         ...sx,
       }}
-      {...other}
     >
-      
       <StyledBadge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        variant="dot" sx={{ mb: 5}}
+        variant="dot"
+        sx={{ mb: 5 }}
       >
         <Avatar alt="Remy Sharp" src="/static/illustrations/Ui.jpeg" sx={{ width: 200, height: 200 }} />
       </StyledBadge>
-      <Typography variant='h5' >
-        NAMA USER
-      </Typography>
-      <Typography variant='body1' >
-        deri dimmba
-      </Typography>
+      <Typography variant="h5">{name}</Typography>
+      <Typography variant="body1">{role}</Typography>
+      <Typography variant="body1">{location}</Typography>
     </Card>
   );
 }

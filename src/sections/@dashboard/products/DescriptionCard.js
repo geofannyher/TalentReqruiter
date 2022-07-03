@@ -29,21 +29,19 @@ const ExpandMore = styled((props) => {
 export default function DescriptionCard() {
   const [expanded, setExpanded] = React.useState(false);
   const [allJobs, setAllJobs] = React.useState([]);
-
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
   React.useEffect(() => {
     getAllJobs();
   }, []);
-  
+
   const getAllJobs = async () => {
     await axios.get(`${baseUrl}getAllJobs`).then((res) => {
       setAllJobs(res.data.allJobs);
     });
   };
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+  // buatlah tombol expand hanya bisa di klik 1 kali
   return (
     <Container>
       {allJobs.map((val, index) => (

@@ -11,12 +11,4 @@ const getAllJobs = async () => {
   return data;
 };
 
-const Score = async () => {
-  let data = [];
-  await axios.post(`${baseUrl}score`).then((res) => {
-    data = res.data.dataScore;
-  });
-  return data;
-};
-
-export { getAllJobs, Score };
+export { getAllJobs };

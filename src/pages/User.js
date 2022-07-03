@@ -1,5 +1,7 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
+// axios
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
@@ -30,9 +32,9 @@ import Iconify from '../components/Iconify';
 import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
 // mock
-import USERLIST from '../_mock/user';
-
-import { getAllJobs } from '../database';
+// import USERLIST from '../_mock/user';
+// base url
+import { baseUrl } from '../constant';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -84,10 +86,54 @@ export default function User() {
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
   // Pilih role
-  const [roles, setRoles] = useState(getAllJobs);
+  const [roles, setRoles] = useState([]);
+  // active role
+  const [activeRole, setActiveRole] = useState(0);
+  // applicants by role
+  const [applicants, setApplicants] = useState([]);
 
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  // get roles
+  const getRoles = async () => {
+    await axios
+      .get(`${baseUrl}getJobs`)
+      .then((res) => {
+        if (res.status === 200) {
+          setRoles(res.data.jobs);
+          setActiveRole(res.data.jobs[0].id_job);
+        } else {
+          console.log(res.data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const getApplicants = async () => {
+    await axios
+      .post(`${baseUrl}getApplicantScoreByJob`, { jobId: activeRole })
+      .then((res) => {
+        if (res.status === 200) {
+          setApplicants(res.data.score);
+        } else {
+          console.log(res.data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getRoles();
+  }, []);
+  useEffect(() => {
+    getApplicants();
+  }, [activeRole]);
+  // set active role on dropdown menu
+  const roleSelected = (val) => {
+    setActiveRole(val);
+  };
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -96,7 +142,7 @@ export default function User() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
+      const newSelecteds = applicants.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -131,9 +177,9 @@ export default function User() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - applicants.length) : 0;
 
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(applicants, getComparator(order, orderBy), filterName);
 
   const isUserNotFound = filteredUsers.length === 0;
 
@@ -149,7 +195,13 @@ export default function User() {
           </Button> */}
         </Stack>
         <Card>
-          <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
+          <UserListToolbar
+            numSelected={selected.length}
+            filterName={filterName}
+            onFilterName={handleFilterByName}
+            roles={roles}
+            roleSelected={roleSelected}
+          />
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
@@ -157,45 +209,47 @@ export default function User() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
+                  rowCount={applicants.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl } = row;
-                    const isItemSelected = selected.indexOf(name) !== -1;
+                    const isItemSelected = selected.indexOf(row.applicant.name) !== -1;
 
                     return (
                       <TableRow
                         hover
-                        key={id}
+                        key={row.applicant.id_applicant}
                         tabIndex={-1}
                         role="checkbox"
                         selected={isItemSelected}
                         aria-checked={isItemSelected}
                       >
                         <TableCell padding="checkbox">
-                          <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox
+                            checked={isItemSelected}
+                            onChange={(event) => handleClick(event, row.applicant.name)}
+                          />
                         </TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
+                            <Avatar alt={row.applicant.name} src={''} />
 
                             {/* // field name ------------------------------------------------ */}
                             <Typography variant="subtitle2" noWrap>
-                              {name}
+                              {row.applicant.name}
                             </Typography>
                           </Stack>
                         </TableCell>
                         {/* show field */}
 
                         {/* field score ------------------------------------------------ */}
-                        <TableCell align="left">{company}</TableCell>
+                        <TableCell align="left">{row.score}</TableCell>
 
                         {/* field role ------------------------------------------------ */}
-                        <TableCell align="left">{role}</TableCell>
+                        <TableCell align="left">{row.applicant.name}</TableCell>
                         {/* <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell> */}
                         {/* <TableCell align="left">
                           <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
@@ -204,8 +258,18 @@ export default function User() {
                         </TableCell> */}
                         <TableCell>
                           {/* button detail pelamar------------------------------------------------ */}
-                          <Button variant="contained" onClick={() => navigate('/dashboard/detail')}>
-                            Detil
+                          <Button
+                            variant="contained"
+                            onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
+                          >
+                            Detail
+                          </Button>
+                          
+                          <Button
+                            variant="contained"
+                            onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
+                          >
+                            Delete
                           </Button>
                           <UserMoreMenu />
                         </TableCell>
@@ -235,7 +299,7 @@ export default function User() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={USERLIST.length}
+            count={applicants.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

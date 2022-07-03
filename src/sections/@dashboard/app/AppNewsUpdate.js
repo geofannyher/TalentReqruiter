@@ -15,16 +15,14 @@ AppNewsUpdate.propTypes = {
   list: PropTypes.array.isRequired,
 };
 
-export default function AppNewsUpdate({ title, subheader, list, ...other }) {
+export default function AppNewsUpdate({ list, ...other }) {
   return (
     <Card {...other}>
-      {/* <CardHeader title={title} subheader={subheader} /> */}
-      <CardHeader title="Experience" subheader={subheader} />
       <Scrollbar>
         <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
-          {list.map((news) => (
+          {list.map((news, index) => (
             // <NewsItem key={news.id} news={news} />
-            <NewsItem key={news.id} news={news} />
+            <NewsItem key={index + 1} news={news} />
           ))}
         </Stack>
       </Scrollbar>
@@ -36,36 +34,26 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
 
 // ----------------------------------------------------------------------
 
-NewsItem.propTypes = {
-  news: PropTypes.shape({
-    description: PropTypes.string,
-    image: PropTypes.string,
-    postedAt: PropTypes.string,
-    title: PropTypes.string,
-  }),
-};
-
 function NewsItem({ news }) {
-  const { image, title, description, postedAt } = news;
-
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
-      <Box component="img" alt={title} src={image} sx={{ width: 48, height: 48, borderRadius: 1.5, flexShrink: 0 }} />
-
       <Box sx={{ minWidth: 240, flexGrow: 1 }}>
         <Typography color="inherit" variant="subtitle2" noWrap>
-          {/* {title} */}
-        <h4>Freelance UI / UX Designer</h4>
+          <h4>{news.employment}</h4>
         </Typography>
 
         <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-          {/* {description} */}
-          <div>2021 - Sekarang</div>
+          <div>{news.company}</div>
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
+          <div>{news.location}</div>
         </Typography>
       </Box>
 
       <Typography variant="caption" sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
-      <h3>1 tahun 2 bulan</h3>
+        <h3>
+          {news.start.slice(0, 10)} - {news.end.slice(0, 10)}
+        </h3>
       </Typography>
     </Stack>
   );

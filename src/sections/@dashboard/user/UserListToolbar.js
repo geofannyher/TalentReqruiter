@@ -1,7 +1,22 @@
 import PropTypes from 'prop-types';
 // material
 import { styled } from '@mui/material/styles';
-import { Toolbar, Tooltip, IconButton, Typography, OutlinedInput, InputAdornment, Chip, Container, FormControl, InputLabel, Select, MenuItem, FormHelperText, Box } from '@mui/material';
+import {
+  Toolbar,
+  Tooltip,
+  IconButton,
+  Typography,
+  OutlinedInput,
+  InputAdornment,
+  Chip,
+  Container,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormHelperText,
+  Box,
+} from '@mui/material';
 // component
 import Iconify from '../../../components/Iconify';
 
@@ -35,7 +50,7 @@ UserListToolbar.propTypes = {
   onFilterName: PropTypes.func,
 };
 
-export default function UserListToolbar({ numSelected, filterName, onFilterName }) {
+export default function UserListToolbar({ numSelected, filterName, onFilterName, roles, roleSelected }) {
   return (
     <RootStyle
       sx={{
@@ -50,7 +65,6 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
           {numSelected} selected
         </Typography>
       ) : (
-
         // search input field ------------------------------------------------
         <SearchStyle
           value={filterName}
@@ -72,34 +86,38 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
           </IconButton>
         </Tooltip>
       ) : (
-
         // Select to filter by role
-        <Box sx={{display: "flex", flexDirection:"row" , alignItem: "center"} }>
+        <Box sx={{ display: 'flex', flexDirection: 'row', alignItem: 'center' }}>
           <FormControl sx={{ m: 1, minWidth: 200 }}>
-        <InputLabel id="demo-simple-select-helper-label">Pilih Role</InputLabel>
-        <Select
-          labelId="demo-simple-select-helper-label"
-          id="demo-simple-select-helper"
-          label="Pilih Role"
-          value={1}
-          onChange={() => {}}
-        >
-          {/* item option role ------------------------------------------------  */}
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
+            {/* <InputLabel id="demo-simple-select-helper-label">Pilih Role</InputLabel> */}
+            <select
+              labelId="demo-simple-select-helper-label"
+              id="demo-simple-select-helper"
+              label="Pilih Role"
+              defaultValue={roles.length > 0 ? roles[0].id_job : ''}
+              onChange={(e) => {
+                roleSelected(e.target.value);
+              }}
+            >
+              {/* item option role ------------------------------------------------  */}
+              {roles.length > 0 ? (
+                roles.map((val) => (
+                  <option value={val.id_job} key={val.id_job}>
+                    {val.job_name}
+                  </option>
+                ))
+              ) : (
+                <option value="">-- Empty --</option>
+              )}
+            </select>
 
-        {/* Filter list table------------------------------------------------ */}
-      </FormControl>
-        <Tooltip title="Filter list">
-          <IconButton>
-            <Iconify icon="ic:round-filter-list" />
-          </IconButton>
-        </Tooltip>
+            {/* Filter list table------------------------------------------------ */}
+          </FormControl>
+          <Tooltip title="Filter list">
+            <IconButton>
+              <Iconify icon="ic:round-filter-list" />
+            </IconButton>
+          </Tooltip>
         </Box>
       )}
     </RootStyle>
