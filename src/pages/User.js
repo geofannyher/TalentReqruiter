@@ -262,7 +262,14 @@ export default function User() {
                             variant="contained"
                             onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
                           >
-                            Detil
+                            Detail
+                          </Button>
+                          
+                          <Button
+                            variant="contained"
+                            onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
+                          >
+                            Delete
                           </Button>
                           <UserMoreMenu />
                         </TableCell>
