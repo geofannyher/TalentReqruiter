@@ -33,6 +33,7 @@ export default function DescriptionCard() {
   React.useEffect(() => {
     getAllJobs();
   }, []);
+  
   const getAllJobs = async () => {
     await axios.get(`${baseUrl}getAllJobs`).then((res) => {
       setAllJobs(res.data.allJobs);
