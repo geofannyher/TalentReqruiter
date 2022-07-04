@@ -233,6 +233,7 @@ export default function User() {
                         </TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
+                            
                             <Avatar alt={row.applicant.avatar} src={row.applicant.avatar} />
 
                             {/* // field name ------------------------------------------------ */}
