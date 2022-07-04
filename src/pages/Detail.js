@@ -323,7 +323,7 @@ export default function Detail() {
               chartLabels={['Negatif', 'Positif']}
               chartData={[
                 {
-                  name: 'Team A',
+                  name: 'Sentiment',
                   type: 'column',
                   fill: 'solid',
                   data: [dataSentimen.sentimen[0].negative, dataSentimen.sentimen[0].positive],
@@ -336,13 +336,13 @@ export default function Detail() {
             <AppCurrentVisits
               title="Intolerant"
               chartData={[
-                { label: 'Intolerant Score', value: dataIntolerant.intolerant },
+                { label: 'Tolerant Score', value: dataIntolerant.intolerant },
 
-                { label: 'Tolerant Score', value: 100 - dataIntolerant.intolerant },
+                { label: 'Intolerant Score', value: 100 - dataIntolerant.intolerant },
               ]}
               chartColors={[
-                theme.palette.primary.main,
                 theme.palette.chart.red[0],
+                theme.palette.primary.main,
                 theme.palette.chart.violet[0],
                 theme.palette.chart.yellow[0],
               ]}
