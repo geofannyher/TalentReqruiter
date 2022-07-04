@@ -48,7 +48,7 @@ export default function DescriptionCard() {
         <Stack sx={{ mb: 5 }} key={val.id_job}>
           {/* // image card ------------------------------------------------ */}
           <Card sx={{ maxWidth: 1820 }}>
-            <CardMedia component="img" alt="ui" height="340" src="/static/illustrations/Ui.jpeg" />
+            <CardMedia component="img" src={val.banner} alt="ui" height="340"  />
             <CardContent>
               {/* // title card ------------------------------------------------ */}
               <Typography gutterBottom variant="h5" component="div">

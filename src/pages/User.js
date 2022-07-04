@@ -89,7 +89,8 @@ export default function User() {
   const [applicants, setApplicants] = useState([]);
 
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
+  // loading
+  const [isUserNotFound, setIsUserNotFound] = useState(true);
   // get roles
   const getRoles = async () => {
     await axios
@@ -112,6 +113,7 @@ export default function User() {
       .then((res) => {
         if (res.status === 200) {
           setApplicants(res.data.score);
+          setIsUserNotFound(false)
         } else {
           console.log(res.data.msg);
         }
@@ -123,13 +125,29 @@ export default function User() {
   useEffect(() => {
     getRoles();
   }, []);
-  useEffect(() => {
+useEffect(() => {
+  setTimeout(() => {
+    updateApplicants();
+  }, 5000);
+    setApplicants([]);
+    setIsUserNotFound(true)
+}, [activeRole]);
+
+// Update applicants
+const updateApplicants = () => {
+  // setInterval(() => {
     getApplicants();
-  }, [activeRole]);
+  // }, 3000);
+}
+
+
   // set active role on dropdown menu
   const roleSelected = (val) => {
     setActiveRole(val);
+
   };
+
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -177,7 +195,8 @@ export default function User() {
 
   const filteredUsers = applySortFilter(applicants, getComparator(order, orderBy), filterName);
 
-  const isUserNotFound = filteredUsers.length === 0;
+
+
 
 
 
@@ -213,55 +232,61 @@ export default function User() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const isItemSelected = selected.indexOf(row.applicant.name) !== -1;
+                {isUserNotFound ?   (
+                  <TableRow>
+                    <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
+                    <CircularProgress/>
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  
+                  applicants.map((row, index) => (
 
-                    return (
-                      <TableRow
-                        hover
-                        key={row.applicant.id_applicant}
-                        tabIndex={-1}
-                        role="checkbox"
-                        selected={isItemSelected}
-                        aria-checked={isItemSelected}
-                      >
-                        <TableCell padding="checkbox">
-                          {/* <Checkbox
-                            checked={isItemSelected}
-                            onChange={(event) => handleClick(event, row.applicant.name)}
-                          /> */}
-                        </TableCell>
-                        <TableCell component="th" scope="row" padding="none">
-                          <Stack direction="row" alignItems="center" spacing={2}>
-                            
-                            <Avatar alt={row.applicant.avatar} src={row.applicant.avatar} />
+                    <TableRow
+                      hover
+                      key={index}
+                      tabIndex={-1}
+                      role="checkbox"
+        
+                    >
+                      <TableCell padding="checkbox">
+                        {/* <Checkbox
+                          checked={isItemSelected}
+                          onChange={(event) => handleClick(event, row.applicant.name)}
+                        /> */}
+                      </TableCell>
+                      <TableCell component="th" scope="row" padding="none">
+                        <Stack direction="row" alignItems="center" spacing={2}>
+                          <Avatar alt={row.applicant.avatar} src={row.applicant.avatar} />
 
-                            {/* // field name ------------------------------------------------ */}
-                            <Typography variant="subtitle2" noWrap>
-                              {row.applicant.name}
-                            </Typography>
-                          </Stack>
-                        </TableCell>
-                        {/* show field */}
+                          {/* // field name ------------------------------------------------ */}
+                          <Typography variant="subtitle2" noWrap>
+                            {row.applicant.name}
+                          </Typography>
+                        </Stack>
+                      </TableCell>
+                      {/* show field */}
 
-                        {/* field score ------------------------------------------------ */}
-                        <TableCell align="left">{row.score}</TableCell>
+                      {/* field score ------------------------------------------------ */}
+                      <TableCell align="left">{row.score}</TableCell>
 
-                        {/* field role ------------------------------------------------ */}
-                        <TableCell align="left">{row.applicant.name}</TableCell>
-                        <TableCell>
-                          {/* button detail pelamar------------------------------------------------ */}
-                          <Button
-                            variant="contained"
-                            onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
-                          >
-                            Detail
-                          </Button>
-                          <UserMoreMenu />
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
+                      {/* field role ------------------------------------------------ */}
+                      <TableCell align="left">{row.applicant.job.job_name}</TableCell>
+                      <TableCell>
+                        {/* button detail pelamar------------------------------------------------ */}
+                        <Button
+                          variant="contained"
+                          onClick={() => navigate(`/dashboard/detail/${activeRole}/${row.applicant.id_applicant}`)}
+                        >
+                          Detail
+                        </Button>
+                        <UserMoreMenu />
+                      </TableCell>
+                    </TableRow>
+                ))
+                  
+                )}
+                  
                   {emptyRows > 0 && (
                     <TableRow style={{ height: 53 * emptyRows }}>
                       <TableCell colSpan={6} />
@@ -269,15 +294,7 @@ export default function User() {
                   )}
                 </TableBody>
 
-                {isUserNotFound &&   (
-                  <TableBody>
-                    <TableRow>
-                      <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                       <CircularProgress />
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                )}
+
               </Table>
             </TableContainer>
           </Scrollbar>

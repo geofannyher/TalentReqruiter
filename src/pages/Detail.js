@@ -283,6 +283,7 @@ export default function Detail() {
               title="Identitas Diri"
               list={[
                 {
+                  
                   name: 'FaceBook',
                   url: dataScore.applicant.sosmed.github,
                   icon: <Iconify icon={'eva:facebook-fill'} color="#1877F2" width={32} height={32} />,
