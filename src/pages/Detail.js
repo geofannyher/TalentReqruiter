@@ -275,7 +275,7 @@ export default function Detail() {
               role={dataScore.job.job_name}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={8} sm={6} md={3}>
             <AppWidgetSummary title="Score" total={dataScore.score} color="info" icon={'ant-design:user-filled'} />
           </Grid>
           <Grid item xs={8} md={6} lg={4}>
