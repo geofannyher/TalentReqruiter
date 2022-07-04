@@ -68,7 +68,7 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
   border: `2px solid ${theme.palette.background.paper}`,
 }));
 
-export default function AppWidgetSummary({ avatar = '', name, role, location, color = 'primary', sx }) {
+export default function AppWidgetSummary({ avatar, name, role, location, color = 'primary', sx }) {
   return (
     <Card
       sx={{
@@ -86,7 +86,7 @@ export default function AppWidgetSummary({ avatar = '', name, role, location, co
         variant="dot"
         sx={{ mb: 5 }}
       >
-        <Avatar alt="Remy Sharp" src="/static/illustrations/Ui.jpeg" sx={{ width: 200, height: 200 }} />
+        <Avatar alt="Remy Sharp" src={avatar} sx={{ width: 200, height: 200 }} />
       </StyledBadge>
       <Typography variant="h5">{name}</Typography>
       <Typography variant="body1">{role}</Typography>

@@ -41,6 +41,7 @@ export default function Detail() {
     score: 0,
     applicant: {
       name: '',
+      avatar: '',
       location: '',
       sosmed: [
         {
@@ -268,6 +269,7 @@ export default function Detail() {
         <Grid container spacing={3}>
           <Grid item xs={8} sm={6} md={3}>
             <AppWidgetWinter
+              avatar={dataScore.applicant.avatar}
               name={dataScore.applicant.name}
               location={dataScore.applicant.location}
               role={dataScore.job.job_name}
