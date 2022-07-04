@@ -21,7 +21,6 @@ import {
 } from '@mui/material';
 // components
 import Page from '../components/Page';
-import Label from '../components/Label';
 import Scrollbar from '../components/Scrollbar';
 import Iconify from '../components/Iconify';
 import SearchNotFound from '../components/SearchNotFound';
@@ -180,6 +179,8 @@ export default function User() {
 
   const isUserNotFound = filteredUsers.length === 0;
 
+
+
   return (
     <Page title="User">
       <Container>
@@ -271,8 +272,7 @@ export default function User() {
                   <TableBody>
                     <TableRow>
                       <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        {/* <SearchNotFound searchQuery={filterName} /> */}
-                        <CircularProgress />
+                       <CircularProgress />
                       </TableCell>
                     </TableRow>
                   </TableBody>
