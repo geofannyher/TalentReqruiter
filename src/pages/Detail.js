@@ -303,12 +303,12 @@ export default function Detail() {
                 {
                   name: 'Whatsapp',
                   url: dataScore.applicant.sosmed.whatsapp,
-                  icon: <Iconify icon={'eva:twitter-fill'} color="#1C9CEA" width={32} height={32} />,
+                  icon: <Iconify icon={'logos:whatsapp'} color="#1C9CEA" width={32} height={32} />,
                 },
                 {
                   name: 'Instagram',
                   url: dataScore.applicant.sosmed.instagram,
-                  icon: <Iconify icon={'eva:instagram-fill'} color="#1C9CEA" width={32} height={32} />,
+                  icon: <Iconify icon={'akar-icons:instagram-fill'} color="#1C9CEA" width={32} height={32} />,
                 },
               ]}
             />
