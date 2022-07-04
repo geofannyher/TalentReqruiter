@@ -388,7 +388,9 @@ export default function Detail() {
 
           {/* Experience */}
           <Grid item xs={12} md={6} lg={5}>
-            <AppNewsUpdate title="Experience" list={dataExperience} />
+            <AppNewsUpdate
+              title="Experience"
+              list={dataExperience} />
           </Grid>
           {/* Akhir Experience */}
 

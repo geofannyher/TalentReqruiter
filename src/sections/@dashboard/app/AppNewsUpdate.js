@@ -18,6 +18,7 @@ AppNewsUpdate.propTypes = {
 export default function AppNewsUpdate({ list, ...other }) {
   return (
     <Card {...other}>
+      <CardHeader title="Experience" />
       <Scrollbar>
         <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
           {list.map((news, index) => (
@@ -26,7 +27,6 @@ export default function AppNewsUpdate({ list, ...other }) {
           ))}
         </Stack>
       </Scrollbar>
-
       <Divider />
     </Card>
   );
